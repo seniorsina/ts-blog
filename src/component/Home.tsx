@@ -1,18 +1,21 @@
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import BlogList from "./Blogs";
-const Home = () => {
-  const [blogs, SetBlogs] = useState([
-    { title: "new blog site", body: "post one", author: "mario", id: 1 },
-    { title: "role of house", body: "post two", author: "youshi", id: 2 },
-    { title: "dev option", body: "post three", author: "mario", id: 3 },
-  ]);
-  const HanadleClick = (name: string) => {
-    console.log(name);
-  };
 
+const Home = () => {
+  const [blogs, SetBlogs] = useState([]);
+
+  const HandlDelete = (id: number) => {};
+
+  useEffect(() => {
+    console.log("use ");
+  }, []);
   return (
     <div className="Home">
-      <BlogList blogs={blogs}></BlogList>
+      <BlogList
+        blogs={blogs}
+        title="All Blog"
+        HandleDelete={HandlDelete}
+      ></BlogList>
     </div>
   );
 };

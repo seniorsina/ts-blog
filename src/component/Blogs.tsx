@@ -1,21 +1,25 @@
 interface ABlog {
+  userId: number;
+  id: number;
   title: string;
   body: string;
-  author: string;
-  id: number;
 }
 
 interface BlogProps {
   blogs: ABlog[];
+  title: string;
+  HandleDelete: (id: number) => void;
 }
 
-const BlogList = ({ blogs }: BlogProps) => {
+const BlogList = ({ blogs, title, HandleDelete }: BlogProps) => {
   return (
     <div className="blog-list">
+      <h2>{title}</h2>
       {blogs.map((blog) => (
         <div className="blog-preview" key={blog.id}>
           <h2>{blog.title}</h2>
-          <p> written by {blog.author}</p>
+          <p> written by {blog.userId}</p>
+          <button onClick={() => HandleDelete(blog.id)}>delete blog</button>
         </div>
       ))}
     </div>
