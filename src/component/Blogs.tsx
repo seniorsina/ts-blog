@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 interface ABlog {
   userId: number;
   id: number;
@@ -17,8 +18,11 @@ const BlogList = ({ blogs, title, HandleDelete }: BlogProps) => {
       <h2>{title}</h2>
       {blogs.map((blog) => (
         <div className="blog-preview" key={blog.id}>
-          <h2>{blog.title}</h2>
-          <p> written by {blog.userId}</p>
+          <Link to={`/posts/${blog.id}`}>
+            <h2>{blog.title}</h2>
+            <p> written by {blog.userId}</p>
+          </Link>
+
           <button onClick={() => HandleDelete(blog.id)}>delete blog</button>
         </div>
       ))}
