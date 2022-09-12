@@ -1,21 +1,23 @@
+import { setegid } from "process";
 import { MouseEvent, useEffect, useState } from "react";
 import BlogList from "./Blogs";
-
+import useFetch from "./useFetch";
 const Home = () => {
-  const [blogs, SetBlogs] = useState([]);
-
   const HandlDelete = (id: number) => {};
+  const { data: blogs, error } = useFetch(
+    "https://jsonplaceholder.typicode.com/posts"
+  );
 
-  useEffect(() => {
-    console.log("use ");
-  }, []);
   return (
     <div className="Home">
-      <BlogList
-        blogs={blogs}
-        title="All Blog"
-        HandleDelete={HandlDelete}
-      ></BlogList>
+      {error && <div>{error}</div>}
+      {blogs && (
+        <BlogList
+          blogs={blogs}
+          title="All Blog"
+          HandleDelete={HandlDelete}
+        ></BlogList>
+      )}
     </div>
   );
 };
