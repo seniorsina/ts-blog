@@ -16,19 +16,28 @@ interface BlogProps {
 
 const BlogDetails = () => {
   const { id } = useParams();
-  const { data, error } = useFetch(
+  const test = [
+    {
+      id: 0,
+      title: "",
+    },
+  ];
+  const { data = test, error } = useFetch(
     "https://jsonplaceholder.typicode.com/posts/" + id
   );
+
   return (
     <div className="blog-details">
       {error && <div>{error}</div>}
       {data && (
         <article>
           <h2>
-            {data[0].title}
-            {/* {data.map((item) => (
-              <p>{item.id}</p>
-            ))} */}
+            {data.map((item, idx) => (
+              <div key={idx}>
+                <p>{item.id}</p>
+                <p>{item.title}</p>
+              </div>
+            ))}
           </h2>
         </article>
       )}

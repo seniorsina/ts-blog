@@ -2,6 +2,7 @@ import { setegid } from "process";
 import { MouseEvent, useEffect, useState } from "react";
 import BlogList from "./Blogs";
 import useFetch from "./useFetch";
+
 const Home = () => {
   const HandlDelete = (id: number) => {};
   const { data: blogs, error } = useFetch(

@@ -9,7 +9,7 @@ interface ABlog {
 }
 
 const useFetch = (endPoint: string) => {
-  const [data, SetData] = useState<ABlog[]>([]);
+  const [data, SetData] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -23,7 +23,14 @@ const useFetch = (endPoint: string) => {
       })
       .then((data) => {
         console.log("data:" + data);
-        SetData(data);
+        let res: any = [];
+        if (Array.isArray(data)) {
+          res = data;
+          console.log("array");
+        } else {
+          res.push(data);
+        }
+        SetData(res);
         setError(null);
       })
       .catch((err) => {
