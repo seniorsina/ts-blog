@@ -18,8 +18,10 @@ const BlogDetails = () => {
   const { id } = useParams();
   const test = [
     {
+      userId: 0,
       id: 0,
       title: "",
+      body: "",
     },
   ];
   const { data = test, error } = useFetch(
@@ -32,11 +34,12 @@ const BlogDetails = () => {
       {data && (
         <article>
           <h2>
-            {data.map((item, idx) => (
-              <div key={idx}>
-                <p>{item.id}</p>
-                <p>{item.title}</p>
-              </div>
+            {data.map((post, idx) => (
+              <article>
+                <h2>{post.title}</h2>
+                <p>written by {post.userId}</p>
+                <div>{post.body}</div>
+              </article>
             ))}
           </h2>
         </article>
